@@ -9,7 +9,7 @@ import RxDataSources
 
 enum TableViewItem {
     /// Represents a cell with a collection view inside
-    case MoviesTableViewItem(data: [Movie])
+    case MoviesTableViewItem(titles: [String])
     /// Represents a cell with a switch
     case SwitchTableViewItem(isOn: Bool)
     /// Represents a cell with a disclosure indicator
@@ -54,9 +54,9 @@ struct DataSource {
         return .init(configureCell: { dataSource, tableView, indexPath, item -> UITableViewCell in
             
             switch dataSource[indexPath] {
-            case let .MoviesTableViewItem(movies):
+            case let .MoviesTableViewItem(titles):
                 let cell = CategoryTableViewCell()
-                cell.viewModel = GridViewModel(data: movies)
+                cell.viewModel = GridViewModel(titles: titles)
                 return cell
             default:
                 return UITableViewCell()
